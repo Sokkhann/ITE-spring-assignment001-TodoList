@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Search Results</title>
+  <!-- Bootstrap CSS link -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+  <h1 class="text-center">Search Results</h1>
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+      <tr>
+        <th>ID</th>
+        <th>Task</th>
+        <th>Description</th>
+        <th>Done</th>
+        <th>Created At</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="todo : ${searchResults}">
+        <td th:text="${todo.id}"></td>
+        <td th:text="${todo.task}"></td>
+        <td th:text="${todo.description}"></td>
+        <td th:text="${todo.isDone} ? 'Yes' : 'No'"></td>
+        <td th:text="${todo.createdAt}"></td>
+        <td>
+          <a href="@{/todo/{id}(id=${todo.id})}" class="btn btn-primary btn-sm">Details</a>
+          <a href="@{/todo/edit/{id}(id=${todo.id})}" class="btn btn-info btn-sm">Edit</a>
+          <a href="@{/todo/delete/{id}(id=${todo.id})}" class="btn btn-danger btn-sm">Delete</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <a href="/todo" class="btn btn-secondary">Back to Todo List</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo Details</title>
+    <!-- Bootstrap CSS link -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .center-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .details-container {
+            text-align: center;
+        }
+        .item {
+            text-align: start;
+        }
+    </style>
+</head>
+<body>
+<!-- Bootstrap container to center content -->
+<div class="container center-content">
+    <h1>Todo Details</h1>
+
+    <div class="details-container">
+        <div class="item">
+            <p>ID: <span th:text="${todo.id}"></span></p>
+            <p>Task: <span th:text="${todo.task}"></span></p>
+            <p>Description: <span th:text="${todo.description}"></span></p>
+            <p>Done: <span th:text="${todo.isDone} ? 'Yes' : 'No'"></span></p>
+            <p>Created At: <span th:text="${todo.createdAt}"></span></p>
+            <a href="/todo" class="btn btn-primary">Back to Todo List</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

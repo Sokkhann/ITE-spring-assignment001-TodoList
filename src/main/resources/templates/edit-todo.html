@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Todo</title>
+  <!-- Bootstrap CSS link -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    form {
+      width: 100%;
+      max-width: 400px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Edit Todo</h1>
+  <form action="/edit/{id}" method="post" th:object="${todo}" class="needs-validation" novalidate>
+    <input type="hidden" th:field="*{id}">
+    <div class="form-group">
+      <label for="task">Task:</label>
+      <input type="text" class="form-control" id="task" th:field="*{task}" required>
+      <div class="invalid-feedback">Please provide a task.</div>
+    </div>
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <input type="text" class="form-control" id="description" th:field="*{description}" required>
+      <div class="invalid-feedback">Please provide a description.</div>
+    </div>
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" id="done" th:field="*{done}">
+      <label class="form-check-label" for="done">Done</label>
+    </div>
+    <div class="form-row justify-content-between">
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+      </div>
+      <div class="col-auto">
+        <a href="/todo" class="btn btn-secondary">Cancel</a>
+      </div>
+    </div>
+  </form>
+</div>
+</body>
+</html>
