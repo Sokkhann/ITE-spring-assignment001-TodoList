@@ -22,7 +22,7 @@
 <body>
 <div class="container">
   <h1>Edit Todo</h1>
-  <form action="/edit/{id}" method="post" th:object="${todo}" class="needs-validation" novalidate>
+  <form action="/edit/{id}" method="post" th:action="@{/edit/{id}(id=${todo.id})}" th:object="${todo}" class="needs-validation" novalidate>
     <input type="hidden" th:field="*{id}">
     <div class="form-group">
       <label for="task">Task:</label>

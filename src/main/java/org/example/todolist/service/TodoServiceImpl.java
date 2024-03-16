@@ -5,12 +5,13 @@ import org.example.todolist.repository.TodoListDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 @Service
 public class TodoServiceImpl implements TodoService{
     private List<Todo> todoList = new ArrayList<>();
-    private long nextId = 1; // Initialize the nextId counter
+    private long nextId = 1;
 
 
     @Autowired
@@ -39,25 +40,23 @@ public class TodoServiceImpl implements TodoService{
     @Override
     public void addTodo(Todo todo) {
         todo.setId(nextId++);
-        // Implementation to add a new todo
+        todo.setCreatedAt(LocalDateTime.now());
         todoList.add(todo);
     }
 
     @Override
     public void editTodo(Long id, Todo updatedTodo) {
-        // Implementation to edit an existing todo
         Todo todoToUpdate = getTodoById(id);
         if (todoToUpdate != null) {
             todoToUpdate.setTask(updatedTodo.getTask());
             todoToUpdate.setDescription(updatedTodo.getDescription());
             todoToUpdate.setDone(updatedTodo.isDone());
-            todoToUpdate.setCreatedAt(updatedTodo.getCreatedAt());
+            todoToUpdate.setCreatedAt(LocalDateTime.now());
         }
     }
 
     @Override
     public void deleteTodo(Long id) {
-        // Implementation to delete a todo by id
         Todo todoToDelete = getTodoById(id);
         if (todoToDelete != null) {
             todoList.remove(todoToDelete);
